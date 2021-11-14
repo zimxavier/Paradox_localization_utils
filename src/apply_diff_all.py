@@ -97,7 +97,7 @@ def apply_diff_one_file(
                 else:
                     if value in existing_translations:
                         # Add existing translation
-                        f.write(f' {key}:{print_version} "{existing_translations[value]}"\n')
+                        f.write(f' {key}:{print_version}Q "{existing_translations[value]}"\n')
                     else:
                         f.write(f' {key}:{print_version}Z "{value}"\n')
             first_line = False
@@ -166,9 +166,9 @@ def apply_diff_all_eu_hoi_stellaris(old_dir, current_dir, source_lang, dest_lang
     # Export dest lines not found if there are some ones
     if len(dest_lines_not_found) > 0:
         dest_lines_not_found_list = list(dest_lines_not_found)
-        with open(f"{dest_lang}_{DELETED_LINES_FILE_NAME}", "w", encoding="utf8") as f:
+        with open(f"autre/old_translated_strings/{dest_lang}_{DELETED_LINES_FILE_NAME}", "a", encoding="utf8") as f:
             f.writelines(dest_lines_not_found_list)
-        with open(f"{source_lang}_{DELETED_LINES_FILE_NAME}", "w", encoding="utf8") as f:
+        with open(f"autre/old_translated_strings/{source_lang}_{DELETED_LINES_FILE_NAME}", "a", encoding="utf8") as f:
             for line in dest_lines_not_found_list:
                 key = get_key(line)
                 old_source_line = old_source_values[key]
